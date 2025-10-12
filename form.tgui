@@ -1,0 +1,78 @@
+Renderer.1 {
+    BackgroundColor = #F5F5F5;
+    BackgroundColorDisabled = #E6E6E6;
+    BackgroundColorHover = white;
+    BorderColor = black;
+    Borders = (1, 1, 1, 1);
+    SelectedBackgroundColor = #006EFF;
+    SelectedBackgroundColorHover = #1E96FF;
+    SelectedTextColor = white;
+    TextColor = #3C3C3C;
+    TextColorDisabled = #7D7D7D;
+    TextColorHover = black;
+    TextureDisabledTab = None;
+    TextureSelectedTab = None;
+    TextureSelectedTabHover = None;
+    TextureTab = None;
+    TextureTabHover = None;
+}
+
+Tabs.Tabs1 {
+    AutoSize = 1;
+    Position = (40, 0);
+    Renderer = &1;
+    TabHeight = 32.3514;
+    Tabs = [File, Edit, Selection, View, Go, Run, Terminal, Help];
+    TextSize = 13;
+}
+
+TextArea.TextArea1 {
+    HorizontalScrollbarPolicy = Never;
+    MaximumCharacters = 0;
+    Position = (40, 70);
+    Size = (1220, 805.851);
+    Text = "";
+    TextSize = 13;
+    VerticalScrollbarPolicy = Automatic;
+
+    Renderer {
+        BackgroundColor = white;
+        BorderColor = black;
+        Borders = (1, 1, 1, 1);
+        CaretColor = black;
+        CaretWidth = 1;
+        DefaultTextColor = #A0A0A0;
+        Padding = (0, 0, 0, 0);
+        SelectedTextBackgroundColor = #006EFF;
+        SelectedTextColor = white;
+        TextColor = #3C3C3C;
+        TextureBackground = None;
+
+        Scrollbar {
+            ArrowBackgroundColor = #F5F5F5;
+            ArrowBackgroundColorHover = white;
+            ArrowColor = #3C3C3C;
+            ArrowColorHover = black;
+            TextureArrowDown = None;
+            TextureArrowDownHover = None;
+            TextureArrowUp = None;
+            TextureArrowUpHover = None;
+            TextureThumb = None;
+            TextureThumbHover = None;
+            TextureTrack = None;
+            TextureTrackHover = None;
+            ThumbColor = #DCDCDC;
+            ThumbColorHover = #E6E6E6;
+            TrackColor = #F5F5F5;
+        }
+    }
+}
+
+Tabs.OpenedFile {
+    AutoSize = 0;
+    Position = (40, 40);
+    Renderer = &1;
+    Size = (167, 31);
+    Tabs = [Tab];
+    TextSize = 13;
+}

@@ -1,35 +1,52 @@
 #include <SFML/Graphics.hpp>
 #include <TGUI/TGUI.hpp>
 #include <TGUI/Backend/SFML-Graphics.hpp>
+#include <fstream>
+#include <sstream>
 
 int main()
 {
-    // Создаем окно SFML
-    sf::RenderWindow window{{800, 600}, "TGUI example - SFML_GRAPHICS backend"};
+    sf::RenderWindow window{{1280, 900}, "TGUI Designer Form Example"};
+    window.setFramerateLimit(60);
 
-    // Создаем GUI, привязанный к окну
     tgui::Gui gui{window};
 
-    // Создаем кнопку
-    auto button = tgui::Button::create("Click me");
-    button->setPosition(350, 250);
-    button->setSize(100, 50);
-    gui.add(button);
+    try
+    {
+        // Загружаем интерфейс из файла form.tgui
+        gui.loadWidgetsFromFile("form.tgui");
+    }
+    catch (const tgui::Exception& e)
+    {
+        std::cerr << "Failed to load form.tgui: " << e.what() << std::endl;
+        return 1;
+    }
 
-    // Создаем текстовое поле
-    auto editBox = tgui::EditBox::create();
-    editBox->setPosition(300, 150);
-    editBox->setSize(200, 40);
-    editBox->setText("Type here...");
-    gui.add(editBox);
+    // Получаем доступ к виджетам
+    auto tabs = gui.get<tgui::Tabs>("Tabs1");
+    auto textArea = gui.get<tgui::EditBox>("TextArea1"); // или TextBox, в зависимости от версии
 
-    // Обработчик нажатия кнопки
-    button->onPress([editBox](){
-        editBox->setText("Button clicked!");
+    //ПРИМЕР обработка выбора вкладки
+    tabs->onTabSelect([](const tgui::String& tab){
+        std::cout << "Selected tab: " << tab << std::endl;
     });
 
-    // Запуск основного цикла TGUI (он сам обрабатывает события и рисует GUI)
-    gui.mainLoop();
+    // Основной цикл
+    while (window.isOpen())
+    {
+        sf::Event event;
+        while (window.pollEvent(event))
+        {
+            if (event.type == sf::Event::Closed)
+                window.close();
+
+            gui.handleEvent(event);
+        }
+
+        window.clear(sf::Color(50, 50, 50));
+        gui.draw();
+        window.display();
+    }
 
     return 0;
 }
