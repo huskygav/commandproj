@@ -1,0 +1,16 @@
+# Code::Blocks
+*.depend
+*.layout
+*.cbp
+*.workspace
+bin/
+obj/
+
+# Linux
+*.o
+*.out
+*.exe
+*.a
+*.so
+*.d
+
